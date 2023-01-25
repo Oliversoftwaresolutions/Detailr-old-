@@ -1,0 +1,154 @@
+﻿/* Input Merger */
+
+.input-merger:focus-within {
+    /* ⚠️ copy here :focus style of .form-control in Framework > custom-style > _forms.scss */
+}
+
+.input-merger__input {
+    width: 100%;
+    font-size: 1em;
+    /* line divider */
+    background: linear-gradient(to right, transparent calc(100% - 1px), var(--color-contrast-low) 100%);
+    background-size: 100% 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    /* 👇 you can ovveride this padding by using the padding utility classes */
+}
+
+    .input-merger__input:not([class^=padding-]):not([class*=" padding-"]) {
+        padding: var(--form-control-padding-y) var(--form-control-padding-x);
+    }
+
+    .input-merger__input:focus {
+        outline: none;
+    }
+
+    .input-merger__input:last-of-type {
+        background: transparent;
+        /* remove divider if last element */
+    }
+
+
+/* Input with email icon  */
+
+.form-control-wrapper {
+    --input-icon-size: 1em;
+    --input-icon-text-gap: var(--space-xxs);
+    position: relative;
+}
+
+    .form-control-wrapper .form-control {
+        width: 100%;
+        height: 100%;
+    }
+
+    .form-control-wrapper .icon {
+        display: block;
+        position: absolute;
+        width: var(--input-icon-size);
+        height: var(--input-icon-size);
+        top: calc(50% - var(--input-icon-size)/2);
+        pointer-events: none;
+    }
+
+.form-control-wrapper--icon-left .icon {
+    left: var(--form-control-padding-x);
+}
+
+.form-control-wrapper--icon-left .form-control {
+    padding-left: calc(var(--form-control-padding-x) + var(--input-icon-size) + var(--input-icon-text-gap));
+}
+
+.form-control-wrapper--icon-right .icon {
+    right: var(--form-control-padding-x);
+}
+
+.form-control-wrapper--icon-right .form-control {
+    padding-right: calc(var(--form-control-padding-x) + var(--input-icon-size) + var(--input-icon-text-gap));
+}
+
+/* Input group */
+
+.input-group {
+    display: flex;
+}
+
+    .input-group > * {
+        position: relative;
+    }
+
+        .input-group > *:not(:last-child):not(:first-child) {
+            border-radius: 0;
+        }
+
+        .input-group > *:first-child {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+            .input-group > *:first-child .select__input {
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+
+        .input-group > *:last-child {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+            .input-group > *:last-child .select__input {
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+
+        .input-group > *:focus, .input-group *:focus-within {
+            z-index: 1;
+        }
+
+.input-group__tag {
+    display: flex;
+    align-items: center;
+    padding: 0 var(--space-sm);
+    background-color: var(--color-bg);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-contrast-lower);
+    white-space: nowrap;
+    color: var(--color-contrast-medium);
+}
+
+    .input-group__tag:first-child {
+        border-right-width: 0px;
+    }
+
+    .input-group__tag:last-child {
+        border-left-width: 0px;
+    }
+
+/* custom select */
+.input-group .select {
+    --select-icon-size: 16px;
+    --select-icon-right-margin: var(--space-sm);
+    --select-text-icon-gap: var(--space-xxxs);
+}
+
+    .input-group .select .input-group__tag:focus {
+        outline: 2px solid var(--color-primary);
+    }
+
+
+.select__input {
+    width: 100%;
+    height: 100%;
+    padding-right: calc(var(--select-icon-size) + var(--select-icon-right-margin) + var(--select-text-icon-gap)) !important;
+}
+
+.select__icon {
+    width: var(--select-icon-size);
+    height: var(--select-icon-size);
+    pointer-events: none;
+    position: absolute;
+    right: var(--select-icon-right-margin);
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}

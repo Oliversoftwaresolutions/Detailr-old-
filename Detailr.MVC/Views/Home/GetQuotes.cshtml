@@ -1,0 +1,147 @@
+﻿<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+<link rel="stylesheet" href="~/css/Location.css" />
+<link rel="stylesheet" href="~/css/Steps.css" />
+<link rel="stylesheet" href="~/css/WizardForm.css" />
+<link rel="stylesheet" href="~/css/Autocomplete.css" />
+<link rel="stylesheet" href="~/css/SelectAutocomplete.css" />
+<link rel="stylesheet" href="~/css/RadioSelect.css" />
+<link rel="stylesheet" href="~/css/SearchResult.css" />
+<link rel="stylesheet" href="~/css/Toast.css" />
+<link rel="stylesheet" href="~/css/ButtonLoadingState.css" />
+<link rel="stylesheet" href="~/css/ChoiceTags.css" />
+<link rel="stylesheet" href="~/css/ContactDetails.css" />
+
+<div class="wiz-form bg height-100vh js-wiz-form">
+    <div class="wiz-form__body">
+        <!-- step 1 -->
+        <fieldset class="wiz-form__step js-wiz-form__step overflow-hidden">
+
+            <div class="coming-soon flex flex-column min-height-100vh flex-row@md">
+                <div class="flex-grow padding-md flex flex-column width-50@md">
+                    @await (Component.InvokeAsync("Logo"))
+                    @await (Component.InvokeAsync("BusinessSearch"))
+                </div>
+
+                <!-- Search Resutls Count Toast -->
+
+                <div class="toast toast--hidden toast--bottom-left js-toast" role="alert" aria-live="assertive" aria-atomic="true" id="resultCountToast">
+                    <div class="flex items-start justify-between">
+                        <div class="toast__icon-wrapper toast__icon-wrapper--warning margin-right-xs">
+                            <svg class="icon" viewBox="0 0 16 16"><title>Alert</title><path d="M15.8,12.526,9.483.88A1.668,1.668,0,0,0,8.8.2,1.693,1.693,0,0,0,6.516.88L.2,12.526A1.678,1.678,0,0,0,1.686,15H14.314a1.7,1.7,0,0,0,.8-.2,1.673,1.673,0,0,0,.687-2.274ZM8,13a1,1,0,1,1,1-1A1,1,0,0,1,8,13ZM9,9.5a.5.5,0,0,1-.5.5h-1A.5.5,0,0,1,7,9.5v-4A.5.5,0,0,1,7.5,5h1a.5.5,0,0,1,.5.5Z"></path></g></svg>
+                        </div>
+
+                        <div class="text-component text-sm">
+                            <h1 class="toast__title text-md" id="ResultsCount"></h1>
+                        </div>
+
+                        <button class="reset toast__close-btn margin-left-xxxxs js-toast__close-btn js-tab-focus">
+                            <svg class="icon" viewBox="0 0 12 12"><title>Close notification</title><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><line x1="1" y1="1" x2="11" y2="11" /><line x1="11" y1="1" x2="1" y2="11" /></g></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- / <!-- Search Resutls Count Toast -->
+                <!-- Map -->
+
+                <figure class="coming-soon__figure" style="width: 50%">
+                    <div class="block width-100% shadow-lg" id="map"></div>
+                </figure>
+
+                <!-- /Map -->
+
+            </div>
+
+
+            <!-- Error Toast -->
+
+            <div class="toast toast--hidden toast--bottom-left js-toast" role="alert" aria-live="assertive" aria-atomic="true" id="errorToast">
+                <div class="flex items-start justify-between">
+                    <div class="toast__icon-wrapper toast__icon-wrapper--warning margin-right-xs">
+                        <svg class="icon" viewBox="0 0 16 16"><title>Alert</title><path d="M15.8,12.526,9.483.88A1.668,1.668,0,0,0,8.8.2,1.693,1.693,0,0,0,6.516.88L.2,12.526A1.678,1.678,0,0,0,1.686,15H14.314a1.7,1.7,0,0,0,.8-.2,1.673,1.673,0,0,0,.687-2.274ZM8,13a1,1,0,1,1,1-1A1,1,0,0,1,8,13ZM9,9.5a.5.5,0,0,1-.5.5h-1A.5.5,0,0,1,7,9.5v-4A.5.5,0,0,1,7.5,5h1a.5.5,0,0,1,.5.5Z"></path></g></svg>
+                    </div>
+
+                    <div class="text-component text-sm">
+                        <h1 class="toast__title text-md">Oops, Something Went Wrong!</h1>
+                        <p class="toast__p">Please maker sure you input a valid postcode and a mile radius.</p>
+                    </div>
+
+                    <button class="reset toast__close-btn margin-left-xxxxs js-toast__close-btn js-tab-focus">
+                        <svg class="icon" viewBox="0 0 12 12"><title>Close notification</title><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><line x1="1" y1="1" x2="11" y2="11" /><line x1="11" y1="1" x2="1" y2="11" /></g></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- /Error Toast -->
+
+        </fieldset>
+
+        <!-- step 2 -->
+        <fieldset class="wiz-form__step wiz-form__step--next js-wiz-form__step">
+            @await (Component.InvokeAsync("Logo"))
+            @await (Component.InvokeAsync("BusinessRadioSelect"))
+        </fieldset>
+
+        <!-- step 3 -->
+        <fieldset class="wiz-form__step wiz-form__step--next js-wiz-form__step">
+            @await (Component.InvokeAsync("Logo"))
+            @await (Component.InvokeAsync("BusinessChoiceTagsSelect"))
+        </fieldset>
+
+        <!-- Step 4 -->
+        <fieldset class="wiz-form__step wiz-form__step--next js-wiz-form__step">
+            @await (Component.InvokeAsync("Logo"))
+            @await (Component.InvokeAsync("BusinessSearchUserDetails"))
+        </fieldset>
+
+        <!-- Step 5 -->
+        <fieldset class="wiz-form__step wiz-form__step--next js-wiz-form__step">
+            @await (Component.InvokeAsync("Logo"))
+            @await (Component.InvokeAsync("BusinessSearchSummary"))
+        </fieldset>
+    </div>
+
+    <!-- footer -->
+    <footer class="wiz-form__footer bg-light padding-y-sm shadow-md">
+        <div class="container">
+            <div class="grid gap-sm items-center">
+                <div class="flex col col-3@md">
+                    <a class="btn btn--subtle flex-grow flex-grow-0@md js-wiz-form__prev" href="#0">&larr; Back</a>
+                </div>
+
+                <div class="display@md col-6@md">
+
+                    <div class="steps-v2 max-width-xs margin-x-auto js-wiz-form__step-indicator" style="--step-v2-current-step: 1;">
+                        <p class="text-sm color-contrast-medium margin-bottom-xs">Step <span class="js-wiz-form__current-step">1</span> of <span class="js-wiz-form__tot-steps">5</span></p>
+
+                        <div class="steps-v2__indicator" aria-hidden="true"></div>
+                    </div>
+                </div>
+
+                <div class="flex justify-end@md col col-3@md">
+                    <!-- "next" button -->
+                    <a class="btn btn--primary flex-grow flex-grow-0@md js-wiz-form__next" href="#0">Next &rarr;</a>
+
+                    <!-- "submit" button -->
+                    <button class="btn btn--primary flex-grow flex-grow-0@md js-wiz-form__submit">
+                        <svg class="icon icon--xs margin-right-xxs" viewBox="0 0 12 12">
+                            <title>check</title>
+                            <polyline points="0.5 7.5 3.5 10.5 11.5 1.5" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></polyline>
+                        </svg>
+                        <span>Submit</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+
+
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+<script src="~/js/Map.js"></script>
+<script src="~/js/WizardForm.js"></script>
+<script src="~/js/Autocomplete.js"></script>
+<script src="~/js/SelectAutocomplete.js"></script>
+<script src="~/js/RadioSelect.js"></script>
+<script src="~/js/Toast.js"></script>
+<script src="~/js/ChoiceTags.js"></script>

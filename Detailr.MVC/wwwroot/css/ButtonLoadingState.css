@@ -1,0 +1,24 @@
+﻿.btn-states {
+    position: relative;
+}
+
+.btn-states--state-b:not(.btn-states--preserve-width) .btn-states__content-a {
+    display: none;
+}
+
+.btn-states:not(.btn-states--state-b) .btn-states__content-b {
+    display: none;
+}
+
+/* preserve button width when switching from state A to state B */
+.btn-states--preserve-width .btn-states__content-b {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.btn-states--preserve-width.btn-states--state-b .btn-states__content-a {
+    visibility: hidden;
+}

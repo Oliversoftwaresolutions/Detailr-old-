@@ -1,0 +1,32 @@
+﻿<div class="flex-grow flex flex-start">
+    <div class="max-width-xs">
+        <div class="text-component margin-bottom-md reveal-fx reveal-fx--translate-up">
+            <p class="text-sm color-contrast-medium line-height-xs inline">Step 1 | <span class="hide@md">of 3</span></p>
+            <div class="color-contrast-medium text-sm margin-bottom-xs inline">Discover Detailers</div>
+            <h1 class="color-contrast-medium">Find Detailers</h1>
+            <p>Input your postcode and a mile radius and get quotes from the closest details.</p>
+        </div>
+
+        <div class="reveal-fx reveal-fx--translate-up" data-reveal-fx-delay="100">
+            <!-- User input and radius select -->
+
+            <div class="search-input search-input--icon-right">
+                <input class="search-input__input form-control validation__error" type="text" name="search" id="postcode" placeholder="Please enter your postcode.." aria-label="Search" autocomplete="off">
+                <button class="search-input__btn">
+                    <svg class="icon" viewBox="0 0 20 20"><title>Submit</title><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="8" cy="8" r="6" /><line x1="12.242" y1="12.242" x2="18" y2="18" /></g></svg>
+                </button>
+            </div>
+
+
+            @await (Component.InvokeAsync("BusinessRadiusSelect"))
+        </div>
+
+        <button class="reset btn-states btn-states--preserve-width btn btn--accent" id="search" href="0#">
+            <span class="btn-states__content-a">Search</span>
+
+            <span class="btn-states__content-b inline-flex flex-center">
+                <svg class="icon icon--is-spinning" aria-hidden="true" viewBox="0 0 16 16"><title>Loading</title><g stroke-width="1" fill="currentColor" stroke="currentColor"><path d="M.5,8a7.5,7.5,0,1,1,1.91,5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>
+            </span>
+        </button>
+    </div>
+</div>

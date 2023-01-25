@@ -1,0 +1,77 @@
+﻿<div class="container max-width-adaptive-lg js-cd-demo">
+    <div class="step-indicator margin-bottom-sm">
+        <p class="text-sm color-contrast-medium line-height-xs inline">Step 2 | <span class="hide@md">of 3</span></p>
+        <div class="color-contrast-medium text-sm margin-bottom-xs inline">Car Type</div>
+    </div>
+
+    <h2 class="color-contrast-medium margin-bottom-sm">What services are you looking for?</h2>
+
+    <ul class="choice-tags flex flex-wrap gap-xxs js-choice-tags">
+        <li>
+            <label class="choice-tag choice-tag--checkbox text-sm js-choice-tag" for="checkbox-tag-basic-package">
+                <input class="sr-only" type="checkbox" id="checkbox-tag-basic-package" checked>
+
+                <svg class="choice-tag__icon icon margin-right-xxs" viewBox="0 0 16 16" aria-hidden="true"><g class="choice-tag__icon-group" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"><line x1="-6" y1="8" x2="8" y2="8" /><line x1="8" y1="8" x2="22" y2="8" /><line x1="8" y1="2" x2="8" y2="14" /></g></svg>
+
+                <span>Basic Package</span>
+            </label>
+        </li>
+
+        <li>
+            <label class="choice-tag choice-tag--checkbox text-sm js-choice-tag" for="checkbox-tag-paint-protection">
+                <input class="sr-only" type="checkbox" id="checkbox-tag-paint-protection">
+
+                <svg class="choice-tag__icon icon margin-right-xxs" viewBox="0 0 16 16" aria-hidden="true"><g class="choice-tag__icon-group" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"><line x1="-6" y1="8" x2="8" y2="8" /><line x1="8" y1="8" x2="22" y2="8" /><line x1="8" y1="2" x2="8" y2="14" /></g></svg>
+
+                <span>Paint protection</span>
+            </label>
+        </li>
+
+        <li>
+            <label class="choice-tag choice-tag--checkbox text-sm js-choice-tag" for="checkbox-tag-full-exterior">
+                <input class="sr-only" type="checkbox" id="checkbox-tag-full-exterior">
+
+                <svg class="choice-tag__icon icon margin-right-xxs" viewBox="0 0 16 16" aria-hidden="true"><g class="choice-tag__icon-group" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"><line x1="-6" y1="8" x2="8" y2="8" /><line x1="8" y1="8" x2="22" y2="8" /><line x1="8" y1="2" x2="8" y2="14" /></g></svg>
+
+                <span> Full Car Exterior Detailing</span>
+            </label>
+        </li>
+
+        <li>
+            <label class="choice-tag choice-tag--checkbox text-sm js-choice-tag" for="checkbox-tag-fill-interior">
+                <input class="sr-only" type="checkbox" id="checkbox-tag-fill-interior">
+
+                <svg class="choice-tag__icon icon margin-right-xxs" viewBox="0 0 16 16" aria-hidden="true"><g class="choice-tag__icon-group" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"><line x1="-6" y1="8" x2="8" y2="8" /><line x1="8" y1="8" x2="22" y2="8" /><line x1="8" y1="2" x2="8" y2="14" /></g></svg>
+
+                <span>Full Car Interior Detailing</span>
+            </label>
+        </li>
+
+        <li>
+            <label class="choice-tag choice-tag--checkbox text-sm js-choice-tag" for="checkbox-tag-restoration">
+                <input class="sr-only" type="checkbox" id="checkbox-tag-restoration">
+
+                <svg class="choice-tag__icon icon margin-right-xxs" viewBox="0 0 16 16" aria-hidden="true"><g class="choice-tag__icon-group" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"><line x1="-6" y1="8" x2="8" y2="8" /><line x1="8" y1="8" x2="22" y2="8" /><line x1="8" y1="2" x2="8" y2="14" /></g></svg>
+
+                <span>Restoration</span>
+            </label>
+        </li>
+    </ul>
+
+
+    <!-- Allow user to type own services required -->
+    <div class="character-count js-character-count margin-top-xl">
+        <h2 class="color-contrast-medium margin-bottom-sm">What other services are you looking for?</h2>
+        <input class="form-control width-100% js-character-count__input choice-tag__custom-input" name="customService"
+        id="customService" maxlength="50" autocomplete="off" placeholder="Custom Service..." />
+
+         <div class="character-count__helper" aria-live="polite" aria-atomic="true">
+            You have <span class="character-count__counter js-customservice-count__counter"></span> custom services left
+        </div>
+
+        <div class="character-count__helper" aria-live="polite" aria-atomic="true">
+            You have <span class="character-count__counter js-character-count__counter"></span> characters left
+        </div>
+    </div>
+
+</div>
