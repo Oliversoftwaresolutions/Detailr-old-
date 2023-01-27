@@ -5,13 +5,17 @@
         this.customChoiceTagInput = document.getElementsByClassName("choice-tag__custom-input")[0];
         this.characterLimit = Number(this.customChoiceTagInput.getAttribute('maxlength')) || 50;
         this.customServiceCount = document.getElementsByClassName("js-choice-tags")[0].getElementsByTagName("li").length;
-        this.customServiceLimit = 10;
-        this.defaultServicesList = 5;
+        this.customServiceRemoveBtn = document.getElementsByClassName("js-custom-service--remove")[0];
         this.counter = document.getElementsByClassName("js-character-count__counter")[0];
         this.customServiceCounter = document.getElementsByClassName("js-customservice-count__counter")[0];
         this.inputs = getChoiceInput(this);
         this.isRadio = this.inputs[0].type.toString() == 'radio';
         this.checkedClass = 'choice-tag--checked';
+        this.defaultClass = 'choice-tag--default';
+
+        this.customServiceLimit = 10;
+        this.defaultServicesList = 5;
+
         this.initCount();
         initChoiceTags(this);
         initChoiceTagEvent(this);
@@ -23,10 +27,6 @@
 
         this.counter.textContent = this.getCount();
         this.customServiceCounter.textContent = this.getCustomServiceCount();
-
-        this.customChoiceTagInput.addEventListener("input", function (event) {
-            self.counter.textContent = self.getCount();
-        });
     };
 
     ChoiceTags.prototype.getCount = function () {
@@ -59,6 +59,14 @@
             element.labels[inputIndex].classList.toggle(element.checkedClass, event.target.checked);
             if (element.isRadio && event.target.checked) resetRadioTags(element, inputIndex);
         });
+
+        element.customServiceRemoveBtn.addEventListener("click", function (event) {
+            deleteSelectedChoiceTags(element);
+        });
+
+        element.customChoiceTagInput.addEventListener("input", function (event) {
+            element.counter.textContent = element.getCount();
+        });
     };
 
     function resetRadioTags(element, index) {
@@ -76,34 +84,66 @@
 
             if (event.keyCode === 13 && element.customChoiceTagInput.value.length != 0) {
 
-                var updatedInputs = updateChoiceTags(element);
+                var updatedChoiceTagsCount = updateChoiceTagsCount(element);
                 initChoiceTagEvent(element);
 
-                if (updatedInputs.length > 14)
+                if (updatedChoiceTagsCount.length > 14)
                     return;
 
                 createNewChoiceTag(element);
-                updateChoiceTags(element);
-                updateCustomServiceCounter(element);
-                resetInputsAndCounters(element);
+                updateChoiceTagsCount(element);
+                increaseCustomServiceCounter(element);
+                resetInputsAndMaximumWordCounter(element);
             }
         });
     };
 
-    function updateChoiceTags(element) {
+    function updateChoiceTagsCount(element) {
         var updatedInputs = getChoiceInput(element);
         element.inputs = updatedInputs;
         return updatedInputs;
     };
 
-    function updateCustomServiceCounter(element) {
+    function increaseCustomServiceCounter(element) {
         element.customServiceCount++;
         element.customServiceCounter.textContent = element.getCustomServiceCount();
     };
 
-    function resetInputsAndCounters(element) {
+    function decreaseCustomServiceCounter(element) {
+        element.customServiceCount--;
+        element.customServiceCounter.textContent = element.getCustomServiceCount();
+    }
+
+    function resetInputsAndMaximumWordCounter(element) {
         element.customChoiceTagInput.value = "";
         element.counter.textContent = element.getCount();
+    };
+
+    function getAllSelectedChoiceTags(element) {
+
+        var selectedChoiceTags = [];
+
+        for (var i = 0; i < element.labels.length; i++) {
+
+            var isDefaultChoiceTag = Util.hasClass(element.labels[i], element.defaultClass);
+            var hasChoiceTagBeenSelected = Util.hasClass(element.labels[i], element.checkedClass);
+
+
+            if (!isDefaultChoiceTag && hasChoiceTagBeenSelected)
+                selectedChoiceTags.push(element.labels[i].getElementsByTagName('input')[0])
+        }
+
+        return selectedChoiceTags;
+
+    };
+
+    function deleteSelectedChoiceTags(element) {
+        var choiceTagsToDelete = getAllSelectedChoiceTags(element);
+
+        for (var i = 0; i < choiceTagsToDelete.length; i++) {
+            choiceTagsToDelete[i].labels[i].parentElement.remove();
+            decreaseCustomServiceCounter(element);
+        }       
     };
 
     function createNewChoiceTag(element) {
