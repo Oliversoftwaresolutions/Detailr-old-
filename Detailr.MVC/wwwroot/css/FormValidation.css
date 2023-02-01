@@ -1,0 +1,7 @@
+﻿.form-validate__error-msg {
+    display: none;
+}
+
+.form-validate__input-wrapper--error .form-validate__error-msg {
+    display: block;
+}
