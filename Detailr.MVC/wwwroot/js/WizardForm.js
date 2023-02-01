@@ -135,6 +135,22 @@
 
     window.WizardForm = WizardForm;
 
-    var wizardForm = document.getElementsByClassName('js-wiz-form')[0];
-    var wizardFormObj = new WizardForm(wizardForm);
+    var wizardForm = document.getElementsByClassName('js-wiz-form');
+    new WizardForm(wizardForm[0], {
+        inputErrorClass: 'form-control--error',
+        customValidate: {
+            isValidEmail: function (input, cb) {
+
+                var validEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+                cb(validEmail.test(input.value));
+            },
+
+            isValidPhoneNumber: function (input, cb) {
+
+                var validPhoneNumber = /^\d{11}$/;
+                cb(validPhoneNumber.test(input.value));
+            }
+        }
+    });
+
 }());

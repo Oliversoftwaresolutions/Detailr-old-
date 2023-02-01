@@ -7,7 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\js\FormValidation.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\css\FloatingLabels.css" />
     <_ContentIncludedByDefault Remove="wwwroot\css\NumberPlate.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\FormValidation.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\js\FormValidation.js" />
   </ItemGroup>
 
   <ItemGroup>

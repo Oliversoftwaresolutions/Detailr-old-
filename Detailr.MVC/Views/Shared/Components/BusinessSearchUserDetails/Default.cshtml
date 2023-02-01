@@ -7,27 +7,62 @@
         <p>These will be passed on to businesses to contact you.</p>
     </div>
 
-    <div class="input-merger padding-0 form-control width-100% grid">
-        <input type="text" class="reset input-merger__input min-width-0 col" aria-label="First name" name="firstname" id="firstName" placeholder="First name..." autocomplete="off">
-        <input type="email" class="reset input-merger__input min-width-0 col" aria-label="Last name" name="lastname" id="lastName" placeholder="Last Name..." autocomplete="off">
+    <div class="form-validate js-form-validate" id="contactDetails">
+        <fieldset class="margin-bottom-md">
+            <div class="margin-bottom-xs">
+                <div class="grid gap-xs">
+
+                    <!-- First name -->
+
+                    <div class="col-6@md form-validate__input-wrapper js-form-validate__input-wrapper">
+                        <div class="floating-label js-floating-label">
+                            <label class="form-label js-form-label" for="firstname">Firstname</label>
+                            <input class="form-control js-form-control width-100%" type="text" name="firstname" id="firstName" placeholder="Firstname" required />
+                        </div>
+                        <div role="alert" class="form-validate__error-msg bg-error bg-opacity-20% padding-x-xs padding-y-xxs radius-md text-xs color-contrast-higher margin-top-xxs"><p>Please provide your first name.</div>
+                    </div>
+
+                    <!--/ First name-->
+                    <!-- Last name -->
+
+                    <div class="col-6@md form-validate__input-wrapper js-form-validate__input-wrapper">
+                        <div class="floating-label js-floating-label">
+                            <label class="form-label js-form-label" for="lastname">Lastname</label>
+                            <input class="form-control js-form-control width-100%" type="text" name="lastname" id="lastName" placeholder="Lastname" required />
+                        </div>
+                        <div role="alert" class="form-validate__error-msg bg-error bg-opacity-20% padding-x-xs padding-y-xxs radius-md text-xs color-contrast-higher margin-top-xxs"><p>Please provide your last name.</div>
+                    </div>
+
+                    <!--/ Last name-->
+                    <!-- Email -->
+
+                    <div class="col-6@md form-validate__input-wrapper js-form-validate__input-wrapper">
+                        <div class="floating-label js-floating-label margin-top-sm">
+                            <label class="form-label js-form-label" for="email">Email</label>
+                            <input class="form-control js-form-control width-100%" type="text" name="email" id="email" autocomplete="off" placeholder="Email" required data-validate="isValidEmail" />
+                        </div>
+                        <div role="alert" class="form-validate__error-msg bg-error bg-opacity-20% padding-x-xs padding-y-xxs radius-md text-xs color-contrast-higher margin-top-xxs"><p>Please provide a valid email address.</div>
+                    </div>
+
+                    <!--/ Email -->
+                    <!-- Phone Number -->
+
+                     <div class="col-6@md form-validate__input-wrapper js-form-validate__input-wrapper">
+                        <div class="floating-label js-floating-label margin-top-sm">
+                            <label class="form-label js-form-label" for="phoneNumber">Phone number</label>
+                            <input class="form-control js-form-control width-100%" type="text" name="phoneNumber" id="phoneNumber" autocomplete="off" placeholder="Phone number" required data-validate="isValidPhoneNumber" />
+                        </div>
+                        <div role="alert" class="form-validate__error-msg bg-error bg-opacity-20% padding-x-xs padding-y-xxs radius-md text-xs color-contrast-higher margin-top-xxs"><p>Please provide a valid phone number.</div>
+                    </div>
+
+                   
+                    <!--/ Phone Number -->
+
+                </div>
+            </div>
+        </fieldset>
     </div>
-
-    <div class="form-control-wrapper padding-y-md form-control-wrapper--icon-right">
-        <input class="form-control" type="text" name="email" id="email" autocomplete="off" placeholder="Email...">
-
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><g stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" stroke="currentColor" fill="none" stroke-miterlimit="10"><polyline points="1.614 3.558 12 13 22.385 3.559" stroke-linecap="butt"></polyline><rect x="1" y="3" width="22" height="18" rx="2" ry="2"></rect></g></svg>
-    </div>
-
-    <div class="input-group">
-      <div class="select">
-        <select class="select__input reset input-group__tag" name="select-phone-prefix" id="select-phone-prefix">
-          <option value="1">UK +44</option>
-        </select>
-        
-        <svg class="icon select__icon color-contrast-medium" aria-hidden="true" viewBox="0 0 16 16"><polyline points="1 5 8 12 15 5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
-      </div>
-
-      <input class="form-control flex-grow" type="text" name="input-phone-x" id="input-phone-x">
-    </div>
-
 </div>
+
+
+

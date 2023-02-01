@@ -1,0 +1,21 @@
+﻿.floating-label {
+    position: relative;
+}
+
+    .floating-label .form-label {
+        position: absolute;
+        top: -3px;
+        transition: transform 0.2s;
+        transform: translateY(-80%);
+        margin: 0;
+        clip: rect(1px, 1px, 1px, 1px);
+        -webkit-clip-path: inset(50%);
+        clip-path: inset(50%);
+    }
+
+    .floating-label .form-label--floating {
+        clip: auto;
+        -webkit-clip-path: none;
+        clip-path: none;
+        transform: translateY(-100%);
+    }
