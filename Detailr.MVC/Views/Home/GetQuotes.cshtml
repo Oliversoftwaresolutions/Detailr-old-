@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="~/css/ContactDetails.css" />
 <link rel="stylesheet" href="~/css/FormValidation.css" />
 <link rel="stylesheet" href="~/css/FloatingLabels.css" />
+<link rel="stylesheet" href="~/css/SummaryList.css" />
 
 <div class="wiz-form bg height-100vh js-wiz-form">
     <div class="wiz-form__body">
@@ -90,7 +91,7 @@
         </fieldset>
 
         <!-- Step 4 -->
-        <fieldset class="wiz-form__step wiz-form__step--next js-wiz-form__step">
+        <fieldset class="wiz-form__step wiz-form__step--next js-wiz-form__step" id="summary">
             @await (Component.InvokeAsync("Logo"))
             @await (Component.InvokeAsync("BusinessSearchUserDetails"))
         </fieldset>
@@ -122,6 +123,15 @@
                 <div class="flex justify-end@md col col-3@md">
                     <!-- "next" button -->
                     <a class="btn btn--primary flex-grow flex-grow-0@md js-wiz-form__next" href="#0">Next &rarr;</a>
+
+                    <!-- "summary" button -->
+                    <button class="btn btn--primary flex-grow flex-grow-0@md js-wiz-form__summary">
+                        <svg class="icon icon--xs margin-right-xxs" viewBox="0 0 12 12">
+                            <title>check</title>
+                            <polyline points="0.5 7.5 3.5 10.5 11.5 1.5" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></polyline>
+                        </svg>
+                        <span>Summary</span>
+                    </button>
 
                     <!-- "submit" button -->
                     <button class="btn btn--primary flex-grow flex-grow-0@md js-wiz-form__submit">
