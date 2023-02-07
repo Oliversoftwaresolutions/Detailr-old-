@@ -29,8 +29,14 @@
 
                 <div class="toast toast--hidden toast--bottom-left js-toast" role="alert" aria-live="assertive" aria-atomic="true" id="resultCountToast">
                     <div class="flex items-start justify-between">
-                        <div class="toast__icon-wrapper toast__icon-wrapper--warning margin-right-xs">
-                            <svg class="icon" viewBox="0 0 16 16"><title>Alert</title><path d="M15.8,12.526,9.483.88A1.668,1.668,0,0,0,8.8.2,1.693,1.693,0,0,0,6.516.88L.2,12.526A1.678,1.678,0,0,0,1.686,15H14.314a1.7,1.7,0,0,0,.8-.2,1.673,1.673,0,0,0,.687-2.274ZM8,13a1,1,0,1,1,1-1A1,1,0,0,1,8,13ZM9,9.5a.5.5,0,0,1-.5.5h-1A.5.5,0,0,1,7,9.5v-4A.5.5,0,0,1,7.5,5h1a.5.5,0,0,1,.5.5Z"></path></g></svg>
+                        <div class="toast__icon-wrapper margin-right-xs">
+                            <lord-icon src="https://cdn.lordicon.com/tyvtvbcy.json"
+                                       trigger="loop"
+                                       delay="2000"
+                                       colors="primary:#121331"
+                                       state="intro"
+                                       style="width:60px;height:60px;margin-top: -15px;">
+                            </lord-icon>
                         </div>
 
                         <div class="text-component text-sm">
@@ -59,13 +65,17 @@
 
             <div class="toast toast--hidden toast--bottom-left js-toast" role="alert" aria-live="assertive" aria-atomic="true" id="errorToast">
                 <div class="flex items-start justify-between">
-                    <div class="toast__icon-wrapper toast__icon-wrapper--warning margin-right-xs">
-                        <svg class="icon" viewBox="0 0 16 16"><title>Alert</title><path d="M15.8,12.526,9.483.88A1.668,1.668,0,0,0,8.8.2,1.693,1.693,0,0,0,6.516.88L.2,12.526A1.678,1.678,0,0,0,1.686,15H14.314a1.7,1.7,0,0,0,.8-.2,1.673,1.673,0,0,0,.687-2.274ZM8,13a1,1,0,1,1,1-1A1,1,0,0,1,8,13ZM9,9.5a.5.5,0,0,1-.5.5h-1A.5.5,0,0,1,7,9.5v-4A.5.5,0,0,1,7.5,5h1a.5.5,0,0,1,.5.5Z"></path></g></svg>
+                    <div class="toast__icon-wrapper margin-right-xs">
+                        <lord-icon src="https://cdn.lordicon.com/bmnlikjh.json"
+                                   trigger="loop"
+                                   delay="1000"
+                                   style="width:60px;height:60px;margin-top:-15px;">
+                        </lord-icon>
                     </div>
 
                     <div class="text-component text-sm">
                         <h1 class="toast__title text-md">Oops, Something Went Wrong!</h1>
-                        <p class="toast__p">Please maker sure you input a valid postcode and a mile radius.</p>
+                        <p class="toast__p">Please make sure you input a valid postcode and a mile radius.</p>
                     </div>
 
                     <button class="reset toast__close-btn margin-left-xxxxs js-toast__close-btn js-tab-focus">
