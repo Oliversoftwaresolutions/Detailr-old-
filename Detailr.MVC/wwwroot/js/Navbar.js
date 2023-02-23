@@ -1,4 +1,12 @@
-﻿(function () {
+﻿if (!Util) function Util() { };
+
+Math.easeOutQuart = function (t, b, c, d) {
+    t /= d;
+    t--;
+    return -c * (t * t * t * t - 1) + b;
+};
+
+(function () {
     var MorphNav = function (element) {
         this.element = element;
         this.menuToggle = this.element.getElementsByClassName('js-morph-nav__sm-menu-toggle');
