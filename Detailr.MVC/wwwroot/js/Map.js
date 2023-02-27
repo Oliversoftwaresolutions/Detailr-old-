@@ -9,6 +9,7 @@ initMap();
 function initMap() {
     searchBusinessesUsingPostcode();
     showPostcodeOnMap(map);
+    invokeButtonLoadingState(true);
 };
 
 function addMarkerToMap(marker, map) {
@@ -58,6 +59,16 @@ function showErrorToast() {
         openToastEvent = new CustomEvent('openToast');
 
     toast.dispatchEvent(openToastEvent);
+}
+
+function invokeButtonLoadingState(isLoading) {
+    var searchButton = document.getElementById('search');
+
+    search.addEventListener('click', function (event) {
+        if (isLoading) {
+            searchButton.classList.add("btn-states--state-b");
+        }
+    });
 }
 
 function showSearchResultCountToast(data, postcode, radius) {
