@@ -76,7 +76,7 @@ namespace Detailr.MVC.Controllers
             return _mapper.Map<List<BusinessVM>>(allBusinessesWithinRange);
         }
 
-        public async Task<PostcodeResult> GetUserLtLon(string postcode)
+        public async Task<PostcodeResult> GetUserLatLon(string postcode)
         {
             return await _postcodeService.GetLatLonOfUserLocation(postcode);
         }
