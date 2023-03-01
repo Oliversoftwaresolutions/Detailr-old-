@@ -184,9 +184,6 @@
     };
 
     function populateSummary(form) {
-
-        debugger;
-
         form.UserNameSummary.textContent = form.firstName.value + " " + form.lastName.value;
         form.emailSummary.textContent = form.email.value;
         form.phoneNumberSummary.textContent = form.phoneNumber.value;
