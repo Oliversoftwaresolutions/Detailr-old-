@@ -28,7 +28,7 @@
 
                 <!-- Search Resutls Count Toast -->
 
-                <div class="toast toast--hidden toast--bottom-left js-toast" role="alert" aria-live="assertive" aria-atomic="true" id="resultCountToast">
+                <div class="toast toast--hidden toast--bottom-left js-toast js_toast__results" role="alert" aria-live="assertive" aria-atomic="true" id="resultCountToast">
                     <div class="flex items-start justify-between">
                         <div class="toast__icon-wrapper margin-right-xs">
                             <lord-icon src="https://cdn.lordicon.com/tyvtvbcy.json"
@@ -41,7 +41,7 @@
                         </div>
 
                         <div class="text-component text-sm">
-                            <h1 class="toast__title text-md" id="ResultsCount"></h1>
+                            <h1 class="toast__title text-md js_resultsCount" id="ResultsCount"></h1>
                         </div>
 
                         <button class="reset toast__close-btn margin-left-xxxxs js-toast__close-btn js-tab-focus">
@@ -54,7 +54,7 @@
                 <!-- Map -->
 
                 <figure class="coming-soon__figure" style="width: 50%">
-                    <div class="block width-100% shadow-lg" id="map"></div>
+                    <div class="block width-100% shadow-lg js_map" id="map"></div>
                 </figure>
 
                 <!-- /Map -->
@@ -64,7 +64,7 @@
 
             <!-- Error Toast -->
 
-            <div class="toast toast--hidden toast--bottom-left js-toast" role="alert" aria-live="assertive" aria-atomic="true" id="errorToast">
+            <div class="toast toast--hidden toast--bottom-left js-toast js-toast__error" role="alert" aria-live="assertive" aria-atomic="true" id="errorToast">
                 <div class="flex items-start justify-between">
                     <div class="toast__icon-wrapper margin-right-xs">
                         <lord-icon src="https://cdn.lordicon.com/bmnlikjh.json"
@@ -161,7 +161,6 @@
 
 
 <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
-<script src="~/js/Map.js"></script>
 <script src="~/js/FormValidation.js"></script>
 <script src="~/js/WizardForm.js"></script>
 <script src="~/js/Autocomplete.js"></script>
@@ -172,3 +171,4 @@
 <script src="~/js/FloatingLabels.js"></script>
 <script src="~/js/Collapse.js"></script>
 <script src="~/js/AnimatedMenuButton.js"></script>
+<script src="~/js/Map.js"></script>

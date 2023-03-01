@@ -1,111 +1,118 @@
-﻿var map = L.map('map').setView([51.505, -0.09], 13);
+﻿(function () {
+    var Map = function (element)
+    {
+        this.element = element;
+        this.searchBtn = document.getElementById('search');
+        this.postcode = document.getElementsByClassName('js_postcode')[0];
+        this.radius = document.getElementsByClassName('js-radius__select')[0];
+        this.resultsErrorToast = document.getElementsByClassName('js-toast__error')[0];
+        this.resultsCountToast = document.getElementsByClassName("js_toast__results")[0];
+        this.resultsCount = document.getElementsByClassName("js_resultsCount")[0];
 
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
+        this.mapIconMarkers = document.getElementsByClassName("leaflet-marker-icon");
+        this.mapIconMarkerShadows = document.getElementsByClassName("leaflet-marker-shadow");
 
-initMap();
+        this.markers = [];
 
-function initMap() {
-    searchBusinessesUsingPostcode();
-    showPostcodeOnMap(map);
-    invokeButtonLoadingState(true);
-};
+        initMap(this);
 
-function addMarkerToMap(marker, map) {
-    marker.addTo(map);
-}
+    }
 
-function showPostcodeOnMap(map) {
-    $("#postcode").focusout(function () {
-        $.ajax({
-            url: "/Business/GetUserLtLon",
-            type: "GET",
-            data: { postcode: $("#postcode").val() },
-            success: function (data) {
-                map.flyTo([data.latitude, data.longitude]);
-            }
-        })
-    });
-}
+    function initMap(map) {
+        var mapElement = L.map(map.element).setView([51.505, -0.09], 13);
 
-function searchBusinessesUsingPostcode() {
-    $('#search').click(function () {
-        $.ajax({
-            url: "/Business/Search",
-            type: "POST",
-            data: { postcode: $("#postcode").val(), radius: $("#radius").find(":selected").val() },
-            success: function (data) {
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(mapElement);
 
-                // Add loading state to search button
-                $(".btn-states").addClass("btn-states--state-b");
+        initMapEvents(map, mapElement);
+        invokeButtonLoadingState(map);
+    }
 
-                addMarkers(data, map);
-
-                showSearchResultCountToast(data.length, postcode.value, radius.value);
-
-            }
-        }).fail(function (jqXHR, textStatus, errorThrown) {
-            showErrorToast();
-        }).always(function (dataOrjqXHR, textStatus, jqXHRorErrorThrown) {
-            // Remove loading state to search button
-            $(".btn-states").removeClass("btn-states--state-b");
+    function initMapEvents(map, mapElement) {
+        map.postcode.addEventListener("focusout", function (event) {
+            $.ajax({
+                url: '/Business/GetUserLatLon',
+                type: 'GET',
+                data: { postcode: map.postcode.value },
+                success: function (data) {
+                    mapElement.flyTo([data.latitude, data.longitude]);
+                }
+            })
         });
-    });
-};
 
-function showErrorToast() {
-    var toast = document.querySelector("#errorToast"),
-        openToastEvent = new CustomEvent('openToast');
+        map.searchBtn.addEventListener('click', function (event) {
+            $.ajax({
+                url: '/Business/Search',
+                type: 'POST',
+                data: { postcode: map.postcode.value, radius: map.radius.value },
+                success: function (data) {
+                    addMarkers(map, data, mapElement);
+                    showSearchResultsCountToast(map, data.length);
+                }
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                showErrorToast(map);
+            }).always(function (data) {
+                removeButtonLoadingState(map);
+            })
+        });
+    } 
 
-    toast.dispatchEvent(openToastEvent);
-}
+    function showSearchResultsCountToast(map, data) {
 
-function invokeButtonLoadingState(isLoading) {
-    var searchButton = document.getElementById('search');
+        var openToastEvent = new CustomEvent('openToast');
 
-    search.addEventListener('click', function (event) {
-        if (isLoading) {
-            searchButton.classList.add("btn-states--state-b");
+        var isOneSearchResult = (data == 1) ? "detailer" : "detailers";
+        var isOneMileAway = (map.radius.value == 1) ? "mile" : "miles";
+
+        map.resultsCount.textContent = "There is currently at least "
+            + data + " " + isOneSearchResult + " which are within "
+            + map.radius.value + " " + isOneMileAway + " from " + map.postcode.value;
+
+        map.resultsCountToast.dispatchEvent(openToastEvent);
+
+        
+    }
+
+    function showErrorToast(map) {
+        var openErrorToastEvent = new CustomEvent('openToast');
+        map.resultsErrorToast.dispatchEvent(openErrorToastEvent);
+    }
+
+    function invokeButtonLoadingState(map) {
+        map.searchBtn.addEventListener('click', function (event) {
+            map.searchBtn.classList.add("btn-states--state-b");
+        });
+    }
+
+    function removeButtonLoadingState(map) {
+        map.searchBtn.classList.remove("btn-states--state-b");
+    }
+
+    function addMarkers(map, data, mapElement) {
+        // Check there are markers on the map
+        // and if there are remove them to prevent duplication.
+        if (map.mapIconMarkers.length > 0) { 
+            for (var i = 0; i < map.mapIconMarkers.length; i++) {
+                map.mapIconMarkers[i].remove();
+                map.mapIconMarkerShadows[i].remove();
+            }
         }
-    });
-}
 
-function showSearchResultCountToast(data, postcode, radius) {
+        for (var i = 0; i < data.length; i++) {
+            var marker = new L.marker([data[i].latitude, data[i].longitude]);
+            map.markers.push(marker);
+            marker.addTo(mapElement);
+        } 
 
-    var toast = document.querySelector("#resultCountToast"),
-        openToastEvent = new CustomEvent('openToast'),
-        resultsCount = document.querySelector("#ResultsCount");
+        // Zoom out of map to fit all markers
+        var markerGroup = new L.featureGroup(map.markers);
+        mapElement.fitBounds(markerGroup.getBounds());    
+    }
 
-    var isOneSearchResult = (data == 1) ? "detailer" : "detailers";
-    var isOneMileAway = (radius == 1) ? "mile" : "miles";
+    window.Map = Map;
 
-    resultsCount.textContent = "There is currently at least " + data + " " +
-        isOneSearchResult + " which are within " + radius + " "
-        + isOneMileAway + " from " + postcode;
+    var map = document.getElementsByClassName("js_map");
+    new Map(map[0]);
 
-
-    toast.dispatchEvent(openToastEvent);
-}
-
-function addMarkers(data, map) {
-    // group all makers together
-    var markers = [];
-
-    // Remove all markers first, to prevent duplication
-    $(".leaflet-marker-icon").remove();
-    $(".leaflet-marker-shadow").remove();
-
-    // Loop through array of businesses and display markers on the map.
-    $.each(data, function (index, item) {
-        var marker = new L.marker([item.latitude, item.longitude]);
-        markers.push(marker);
-        addMarkerToMap(marker, map);
-    });
-
-    // Zoom out map to fit all markers
-    var markerGroup = new L.featureGroup(markers);
-    map.fitBounds(markerGroup.getBounds());
-
-}
-
+}());
