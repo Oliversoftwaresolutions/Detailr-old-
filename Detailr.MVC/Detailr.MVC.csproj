@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <_ContentIncludedByDefault Remove="wwwroot\css\FloatingLabels.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\Gallery.css" />
     <_ContentIncludedByDefault Remove="wwwroot\js\FormValidation.js" />
   </ItemGroup>
 

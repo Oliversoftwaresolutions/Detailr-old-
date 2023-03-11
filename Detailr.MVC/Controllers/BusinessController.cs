@@ -29,10 +29,17 @@ namespace Detailr.MVC.Controllers
             return View();
         }
 
+        public async Task<IActionResult> Results(Quote quote)
+        {
+            var searchResults = await Search(quote.Postcode, quote.Radius);
+              
+            return View(searchResults);
+        }
+
         public async Task<List<BusinessVM>> Search(string postcode, int radius)
         {
 
-            // Return null, which tells the client side to show error toast.
+                     // Return null, which tells the client side to show error toast.
             if (postcode == null || radius == 0)
                 throw new Exception("Oops, Something went wrong. Please try again.");
 
