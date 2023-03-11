@@ -1,1 +1,77 @@
-﻿
+﻿<link rel="stylesheet" href="~/css/Index.css" /> 
+<link rel="stylesheet" href="~/css/Gallery.css" />
+<link rel="stylesheet" href="~/css/RevealEffects.css" />
+
+<section class="hero padding-y-xxl">
+    <div class="container max-width-adaptive-sm">
+        <div class="text-component line-height-lg text-space-y-md text-center">
+            <p class="text-xs color-contrast-higher color-opacity-40% text-uppercase letter-spacing-lg">Pills &amp; potions</p>
+            <h1>Every champion was once a contender who refused to give up</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, rem neque doloribus impedit explicabo minus laborum cupiditate atque esse consectetur.</p>
+        </div>
+
+        <div class="margin-top-md">
+            <div class="flex flex-wrap gap-sm flex-center">
+                <a class="btn btn--primary" asp-action="GetQuotes" asp-controller="Home">Get a quote</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="adv-gallery-v6 padding-top-lg padding-bottom-xxl">
+    <div class="adv-gallery-v6__inner">
+        <ul class="grid gap-md">
+            <li class="col-12 position-relative z-index-2">
+                <ul class="grid gap-md">
+                    <li class="col-4 reveal-fx reveal-fx--translate-up col-3@sm" data-reveal-fx-delay="200">
+                        <a href="#0" class="adv-gallery-v6__card shadow-sm inner-glow">
+                            <img class="adv-gallery-v6__img" src="~/Images/Main_gallery_1.jpg" alt="Image description" loading="lazy">
+                        </a>
+                    </li>
+
+                    <li class="col-4 reveal-fx reveal-fx--translate-up col-3@sm" data-reveal-fx-delay="100">
+                        <a href="#0" class="adv-gallery-v6__card shadow-md inner-glow">
+                            <img class="adv-gallery-v6__img" src="~/Images/Main_gallery_2.jpg" alt="Image description" loading="lazy">
+                        </a>
+                    </li>
+
+                    <li class="col-4 reveal-fx reveal-fx--translate-up col-3@sm">
+                        <a href="#0" class="adv-gallery-v6__card shadow-xl inner-glow">
+                            <img class="adv-gallery-v6__img" src="~/Images/Main_gallery_3.jpg" alt="Image description" loading="lazy">
+                        </a>
+                    </li>
+
+                    <li class="reveal-fx reveal-fx--translate-up col-3@sm display@sm" data-reveal-fx-delay="300">
+                        <a href="#0" class="adv-gallery-v6__card shadow-xs inner-glow">
+                            <img class="adv-gallery-v6__img" src="~/Images/Main_gallery_4.jpg" alt="Image description" loading="lazy">
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="col-12 position-relative z-index-1">
+                <ul class="grid gap-md justify-center">
+                    <li class="col-4 reveal-fx reveal-fx--translate-up col-3@sm" data-reveal-fx-delay="300">
+                        <a href="#0" class="adv-gallery-v6__card shadow-xs inner-glow">
+                            <img class="adv-gallery-v6__img" src="~/Images/Main_gallery_5.jpg" alt="Image description" loading="lazy">
+                        </a>
+                    </li>
+
+                    <li class="col-4 reveal-fx reveal-fx--translate-up col-3@sm" data-reveal-fx-delay="100">
+                        <a href="#0" class="adv-gallery-v6__card shadow-lg inner-glow">
+                            <img class="adv-gallery-v6__img" src="~/Images/Main_gallery_6.jpg" alt="Image description" loading="lazy">
+                        </a>
+                    </li>
+
+                    <li class="reveal-fx reveal-fx--translate-up col-3@sm display@sm" data-reveal-fx-delay="200">
+                        <a href="#0" class="adv-gallery-v6__card shadow-sm inner-glow">
+                            <img class="adv-gallery-v6__img" src="~/Images/Main_gallery_7.jpg" alt="Image description" loading="lazy">
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script src="~/js/RevealEffects.js"></script>

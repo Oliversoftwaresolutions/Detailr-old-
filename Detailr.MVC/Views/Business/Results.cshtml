@@ -1,0 +1,41 @@
+﻿@model List<Detailr.MVC.Models.BusinessVM>
+
+<link rel="stylesheet" href="~/css/Preloader.css" />
+<link rel="stylesheet" href="~/css/StackingCards.css" />
+
+<div class="preloader">
+      <div class="fill-loader fill-loader--v4" role="alert">
+      <p class="fill-loader__label">Content is loading...</p>
+      <div aria-hidden="true">
+        <div class="fill-loader__base"></div>
+        <div class="fill-loader__fill"></div>
+      </div>
+    </div>
+</div>
+
+
+
+
+<div class="container text-component text-center max-width-adaptive-sm margin-y-xl">
+    <ul class="stack-cards js-stack-cards">
+
+        @foreach (var item in Model)
+        {
+            <li class="stack-cards__item bg-light radius-lg inner-glow shadow-md js-stack-cards__item">
+                <div class="flex flex-center">@item.Name</div>
+            </li>
+
+        }
+    </ul>
+
+
+</div>
+
+
+<script>
+    window.onload = function () {
+        document.querySelector(".preloader").style.display = "none";
+    }
+</script>
+
+<script src="~/js/StackingCards.js"></script>
