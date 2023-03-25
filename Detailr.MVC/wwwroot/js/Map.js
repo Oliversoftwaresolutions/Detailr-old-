@@ -47,7 +47,10 @@
                 type: 'POST',
                 data: { postcode: map.postcode.value, radius: map.radius.value },
                 success: function (data) {
-                    addMarkers(map, data, mapElement);
+                    debugger;
+                    if (data.length > 0) {
+                        addMarkers(map, data, mapElement);
+                    }
                     showSearchResultsCountToast(map, data.length);
                 }
             }).fail(function (jqXHR, textStatus, errorThrown) {
@@ -62,16 +65,19 @@
 
         var openToastEvent = new CustomEvent('openToast');
 
-        var isOneSearchResult = (data == 1) ? "detailer" : "detailers";
-        var isOneMileAway = (map.radius.value == 1) ? "mile" : "miles";
+        if (data == 0 || data == null) {
+            map.resultsCount.textContent = "No detailers found, please try another postcode.";
+        } else {
+            var isOneSearchResult = (data == 1) ? "detailer" : "detailers";
+            var isOneMileAway = (map.radius.value == 1) ? "mile" : "miles";
 
-        map.resultsCount.textContent = "There is currently at least "
-            + data + " " + isOneSearchResult + " which are within "
-            + map.radius.value + " " + isOneMileAway + " from " + map.postcode.value;
+            map.resultsCount.textContent = "There is currently at least "
+                + data + " " + isOneSearchResult + " which are within "
+                + map.radius.value + " " + isOneMileAway + " from " + map.postcode.value;
+        }
 
         map.resultsCountToast.dispatchEvent(openToastEvent);
-
-        
+    
     }
 
     function showErrorToast(map) {
