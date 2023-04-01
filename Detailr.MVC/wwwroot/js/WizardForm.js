@@ -35,6 +35,9 @@
         this.email = this.element.getElementsByClassName('js-input__email')[0];
         this.phoneNumber = this.element.getElementsByClassName('js-input__phoneNumber')[0];
 
+        // Business Map Markers
+        this.mapMarkers = document.getElementsByClassName("leaflet-marker-icon");
+
         // step bar
         this.stepsBar = this.element.getElementsByClassName('js-wiz-form__step-indicator');
         if (this.stepsBar.length > 0) {
@@ -146,6 +149,7 @@
     };
 
     function updateForm(form) {
+        debugger;
         if (form.currentIndex < 0) form.currentIndex = 0;
         if (form.currentIndex > form.steps.length) form.currentIndex = form.steps.length;
         if (form.currentIndex < form.steps.length) {
@@ -178,7 +182,10 @@
                     }
                 });
             } else {
-                changeStep(form, event);
+                // Check businesses have been found.
+                // Only move to the next step once businesses have been found.
+                if (form.mapMarkers.length > 0) changeStep(form, event);
+                    
             }
         });
     };
